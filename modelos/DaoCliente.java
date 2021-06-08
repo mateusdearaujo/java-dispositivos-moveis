@@ -22,15 +22,20 @@ public class DaoCliente
     public Cliente buscar(Cliente cliente) throws SQLException
     {
         String sql = "select * from cliente where cli_id = ?";
+        Cliente retorno;
         
         try (PreparedStatement stmt = this.c.prepareStatement(sql)) {
             stmt.setInt(1, cliente.getId());
-            ResultSet rs = stmt.executeQuery();
-            c.close();
-            return new Cliente(
+            ResultSet rs = stmt.executeQuery();            
+            retorno = null;           
+            while (rs.next()) {
+                retorno = new Cliente(
                     rs.getInt(1),
                     rs.getString(2),
-                    rs.getInt(3));          
+                    rs.getInt(3));  
+            }            
+            c.close();
+            return retorno;     
         }
     }
     
@@ -44,8 +49,11 @@ public class DaoCliente
              
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
-            int id = rs.getInt(1);
-            cliente.setId(id);
+            
+            if (rs.next()) {
+                int id = rs.getInt(1);
+                cliente.setId(id);
+            }
             c.close();
             return cliente;
         }

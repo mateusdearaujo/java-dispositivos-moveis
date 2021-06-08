@@ -10,6 +10,11 @@ public class Cliente
     {
         this.id = id;
     }
+    
+    public Cliente(String nome)
+    {
+        this.nome = nome;
+    }
         
     public Cliente(String nome, int idade)
     {
@@ -52,5 +57,11 @@ public class Cliente
     public void setIdade(int idade) 
     {
         this.idade = idade;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return "Cliente{" + "id=" + this.id + ", nome=" + this.nome + ", idade=" + this.idade + '"' + '}';
     }
 }

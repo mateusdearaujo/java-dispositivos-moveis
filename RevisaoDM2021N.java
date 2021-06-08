@@ -10,8 +10,9 @@ import javax.swing.JOptionPane;
 import revisaodm2021n.telas.pessoa.ManterPessoa;
 import revisaodm2021n.telas.usuario.ManterUsuario;
 import revisaodm2021n.telas.departamento.ManterDepartamento;
-import revisaodm2021n.telas.eletronico.ManterEletronico;
 import revisaodm2021n.telas.pessoa.ManterPessoaFisica;
+import revisaodm2021n.telas.eletronico.ManterEletronico;
+import revisaodm2021n.telas.cliente.ManterCliente;
 
 /**
  *
@@ -25,11 +26,12 @@ public class RevisaoDM2021N {
      * @throws java.lang.ClassNotFoundException
      */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-
         
-        JOptionPane.showMessageDialog(null,"SISTEMA DE CADASTRO PESSOAS , DEPARTAMENTO, USUARIO E ELETRONICOS");
-        JOptionPane.showMessageDialog(null,"ENTRE COM: 1 - PESSOAS, 2 - DEPARTAMENTO, 3 - USUARIO, 4 - ELETRONICOS");
-        int sistema = Integer.parseInt(JOptionPane.showInputDialog("ENTRE COM A OPÇÃO"));
+//        JOptionPane.showMessageDialog(null,"SISTEMA DE CADASTRO PESSOAS , DEPARTAMENTO, USUARIO E ELETRONICOS");
+//        JOptionPane.showMessageDialog(null,"ENTRE COM: 1 - PESSOAS, 2 - DEPARTAMENTO, 3 - USUARIO, 4 - ELETRONICOS, 5 - CLIENTES");
+//        int sistema = Integer.parseInt(JOptionPane.showInputDialog("ENTRE COM A OPÇÃO"));
+        
+        int sistema = 5;
 
         if(sistema == 1 ) {
 
@@ -133,7 +135,22 @@ public class RevisaoDM2021N {
             if(opcao == 5) { ManterEletronico.Excluir(); }
 
         }
+        
+        if(sistema == 5) {
+            JOptionPane.showMessageDialog(null,"SISTEMA DE CADASTRO DE CLIENTES");
+            JOptionPane.showMessageDialog(null,"ENTRE COM: 1 - INSERIR, 2 - ALTERAR, 3 - BUSCAR, 4 - LISTAR, 5 - EXCLUIR");
+            int opcao = Integer.parseInt(JOptionPane.showInputDialog("ENTRE COM A OPÇÃO"));
+            
+            if(opcao == 1) { ManterCliente.Inserir(); }
+
+            if(opcao == 2) { ManterCliente.Alterar(); }
+
+            if(opcao == 3) { ManterCliente.Buscar(); }
+
+            if(opcao == 4) { ManterCliente.Listar(); }
+
+            if(opcao == 5) { ManterCliente.Excluir(); }
+        }
 
     }
-    
 }
