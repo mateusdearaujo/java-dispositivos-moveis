@@ -7,6 +7,16 @@ public class Pedido
     private int cli_id;
     private String data;
     
+    public Pedido(int id) 
+    {
+        this.id = id;
+    }
+    
+    public Pedido(String data) 
+    {
+        this.data = data;
+    }
+    
     public Pedido(int ele_id, int cli_id, String data) 
     {
         this.ele_id = ele_id;
@@ -60,5 +70,11 @@ public class Pedido
     public void setData(String data)
     {
         this.data = data;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return "Pedido{" + "id=" + this.id + ", ele_id=" + this.ele_id + ", cli_id=" + this.cli_id + '"' + ". cli_id=" + this.cli_id + '"' + '}';
     }
 }

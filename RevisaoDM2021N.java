@@ -13,6 +13,7 @@ import revisaodm2021n.telas.departamento.ManterDepartamento;
 import revisaodm2021n.telas.pessoa.ManterPessoaFisica;
 import revisaodm2021n.telas.eletronico.ManterEletronico;
 import revisaodm2021n.telas.cliente.ManterCliente;
+import revisaodm2021n.telas.pedido.ManterPedido;
 
 /**
  *
@@ -27,11 +28,9 @@ public class RevisaoDM2021N {
      */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         
-//        JOptionPane.showMessageDialog(null,"SISTEMA DE CADASTRO PESSOAS , DEPARTAMENTO, USUARIO E ELETRONICOS");
-//        JOptionPane.showMessageDialog(null,"ENTRE COM: 1 - PESSOAS, 2 - DEPARTAMENTO, 3 - USUARIO, 4 - ELETRONICOS, 5 - CLIENTES");
-//        int sistema = Integer.parseInt(JOptionPane.showInputDialog("ENTRE COM A OPÇÃO"));
-        
-        int sistema = 5;
+        JOptionPane.showMessageDialog(null,"SISTEMA DE CADASTRO PESSOAS , DEPARTAMENTO, USUARIO E ELETRONICOS");
+        JOptionPane.showMessageDialog(null,"ENTRE COM: 1 - PESSOAS, 2 - DEPARTAMENTO, 3 - USUARIO, 4 - ELETRONICOS, 5 - CLIENTES, 6 - PEDIDOS");
+        int sistema = Integer.parseInt(JOptionPane.showInputDialog("ENTRE COM A OPÇÃO"));
 
         if(sistema == 1 ) {
 
@@ -150,6 +149,22 @@ public class RevisaoDM2021N {
             if(opcao == 4) { ManterCliente.Listar(); }
 
             if(opcao == 5) { ManterCliente.Excluir(); }
+        }
+        
+        if(sistema == 6) {
+            JOptionPane.showMessageDialog(null,"SISTEMA DE CADASTRO DE PEDIDOS");
+            JOptionPane.showMessageDialog(null,"ENTRE COM: 1 - INSERIR, 2 - ALTERAR, 3 - BUSCAR, 4 - LISTAR, 5 - EXCLUIR");
+            int opcao = Integer.parseInt(JOptionPane.showInputDialog("ENTRE COM A OPÇÃO"));
+            
+            if(opcao == 1) { ManterPedido.Inserir(); }
+
+            if(opcao == 2) { ManterPedido.Alterar(); }
+
+            if(opcao == 3) { ManterPedido.Buscar(); }
+
+            if(opcao == 4) { ManterPedido.Listar(); }
+
+            if(opcao == 5) { ManterPedido.Excluir(); }
         }
 
     }

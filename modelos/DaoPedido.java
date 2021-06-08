@@ -22,22 +22,27 @@ public class DaoPedido
     public Pedido buscar(Pedido pedido) throws SQLException
     {
         String sql = "select * from pedido where pe_id = ?";
+        Pedido retorno;
         
         try (PreparedStatement stmt = this.c.prepareStatement(sql)) {
             stmt.setInt(1, pedido.getId());
-            ResultSet rs = stmt.executeQuery();
-            c.close();
-            return new Pedido(
+            ResultSet rs = stmt.executeQuery();            
+            retorno = null;           
+            while (rs.next()) {
+                retorno = new Pedido(
                     rs.getInt(1),
                     rs.getInt(2),
                     rs.getInt(3),
-                    rs.getString(4));          
+                    rs.getString(4)); 
+            }
+            c.close();
+            return retorno;         
         }
     }
     
     public Pedido inserir(Pedido pedido) throws SQLException
     {
-        String sql = "insert into pedido (pe_ele_id, pe_cli_id, pe_data) values (?,?)";
+        String sql = "insert into pedido (pe_ele_id, pe_cli_id, pe_data) values (?,?,?)";
         
         try (PreparedStatement stmt = this.c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, pedido.getEle_id());
@@ -45,9 +50,13 @@ public class DaoPedido
             stmt.setString(3, pedido.getData());
              
             stmt.executeUpdate();
-            ResultSet rs = stmt.getGeneratedKeys();
-            int id = rs.getInt(1);
-            pedido.setId(id);
+            ResultSet rs = stmt.getGeneratedKeys();            
+          
+            if (rs.next()) {
+                int id = rs.getInt(1);
+                pedido.setId(id);
+            }
+            
             c.close();
             return pedido;
         }
