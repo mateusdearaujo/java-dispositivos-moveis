@@ -38,6 +38,11 @@ public class ControleEletronico
     {
         return daoEletronico.buscar(eEntrada);
     }
+    
+    public String buscarNome(int id) throws SQLException 
+    {
+        return daoEletronico.buscarNome(id);
+    }
 
     public Eletronico excluir(Eletronico eEntrada) throws SQLException 
     {

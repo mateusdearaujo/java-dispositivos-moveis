@@ -33,9 +33,19 @@ public class ControleCliente
     {
         return daoCliente.buscar(eEntrada);
     }
+    
+    public String buscarNome(int id) throws SQLException 
+    {
+        return daoCliente.buscarNome(id);
+    }
 
     public Cliente excluir(Cliente eEntrada) throws SQLException 
     {
         return daoCliente.excluir(eEntrada);
+    }
+    
+    public List<Cliente> getAll() throws SQLException 
+    {
+        return daoCliente.getAll();
     }
 }

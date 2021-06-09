@@ -117,4 +117,29 @@ public class DaoPedido
                
         return pedidos;
     }
+    
+    public List<Pedido> getAll () throws SQLException
+    {
+        List<Pedido> pedidos = new ArrayList<>();
+        String sql = "select * from pedido";
+        
+        try (PreparedStatement stmt = this.c.prepareStatement(sql)) {
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                
+                Pedido pSaida = new Pedido(
+                        rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getInt(3),
+                        rs.getString(4));
+                
+                pedidos.add(pSaida);
+            }
+            
+            rs.close();
+        }
+        return pedidos;
+    }
 }

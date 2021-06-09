@@ -38,4 +38,9 @@ public class ControlePedido
     {
         return daoPedido.excluir(pedido);
     }
+    
+    public List<Pedido> getAll() throws SQLException 
+    {
+        return daoPedido.getAll();
+    }
 }

@@ -49,6 +49,28 @@ public class DaoEletronico
         return retorno;
     }
     
+    public String buscarNome(int id) throws SQLException
+    {
+        String sql = "select ele_nome from eletronico WHERE ele_id = ?";
+        String retorno;
+        
+        try (PreparedStatement stmt = this.c.prepareStatement(sql)) {
+
+        stmt.setInt(1, id);
+        
+        ResultSet rs = stmt.executeQuery();
+        
+            retorno = null;
+            while (rs.next()) {
+                
+                retorno = rs.getString(1);
+            }
+         
+        }        
+
+        return retorno;
+    }
+    
     public Eletronico inserir(Eletronico e) throws SQLException
     {
         String sql = "insert into eletronico (ele_nome, ele_descricao, ele_valor, ele_ano_de_lancamento, ele_quantidade, ele_ativo, ele_marca, ele_modelo) values (?,?,?,?,?,?,?,?)";

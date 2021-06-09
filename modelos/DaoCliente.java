@@ -39,6 +39,28 @@ public class DaoCliente
         }
     }
     
+    public String buscarNome(int id) throws SQLException
+    {
+        String sql = "select cli_nome from cliente WHERE cli_id = ?";
+        String retorno;
+        
+        try (PreparedStatement stmt = this.c.prepareStatement(sql)) {
+
+        stmt.setInt(1, id);
+        
+        ResultSet rs = stmt.executeQuery();
+       
+            retorno = null;
+            while (rs.next()) {
+                
+                retorno = rs.getString(1);
+            }
+         
+        }      
+      
+        return retorno;
+    }
+    
     public Cliente inserir(Cliente cliente) throws SQLException
     {
         String sql = "insert into cliente (cli_nome, cli_idade) values (?,?)";
@@ -110,6 +132,30 @@ public class DaoCliente
             c.close();
         }
                
+        return clientes;
+    }
+    
+    public List<Cliente> getAll () throws SQLException
+    {
+        List<Cliente> clientes = new ArrayList<>();
+        String sql = "select * from cliente";
+        
+        try (PreparedStatement stmt = this.c.prepareStatement(sql)) {
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                
+                Cliente eSaida = new Cliente(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getInt(3));
+                
+                clientes.add(eSaida);
+            }
+            
+            rs.close();
+        }
         return clientes;
     }
 }
